@@ -80,7 +80,7 @@
         </h5>
     </n-card>
     <n-card class="card" :title="contentText.isSafty">
-        {{ contentText.saftyClaim1 }}<a href="https://github.com/gaowanliang/image-privacy-watermark-generator"
+        {{ contentText.saftyClaim1 }}<a href="https://github.com/gaowanliang/Privacy-Image-Watermark-Generator"
             target="_blank">GitHub</a>{{ contentText.saftyClaim2 }}
     </n-card>
     <h5 style="text-align: center">

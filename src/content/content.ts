@@ -2,7 +2,7 @@
 const lang = {
     'zh-CN': {
         lang: 'zh-CN',
-        title: '图片隐私水印生成器',
+        title: '隐私图片水印生成器',
         formTitle: '添加水印的基本设置',
         inputTextTitle: '水印文字',
         inputTextTitleHint: '请输入要添加的水印文字，每个输入框对应一行',
@@ -35,7 +35,7 @@ const lang = {
     },
     'en-US': {
         lang: 'en-US',
-        title: 'Image Privacy Watermark Generator',
+        title: 'Privacy Image Watermark Generator',
         formTitle: 'Basic settings for adding watermarks',
         inputTextTitle: 'watermark text',
         inputTextTitleHint:
