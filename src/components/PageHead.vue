@@ -6,8 +6,7 @@
         <span>{{ contentText.title }}</span>
       </n-text>
       <n-button text class="nav-picker" v-if="langs === 'zh-CN'" @click="onLangChange('en-US')">
-        English</n-button
-      >
+        English</n-button>
       <n-button text class="nav-picker" v-else @click="onLangChange('zh-CN')">中文</n-button>
     </div>
   </n-layout-header>
@@ -36,11 +35,11 @@ export default defineComponent({
   },
   setup: (props) => {
     const langs = toRef(props, 'lang')
-    const contentText = computed(() => content[langs.value])
+    const contentText = computed(() => content[langs.value ?? 'en-US'])
     return {
       langs,
       contentText,
-      onLangChange: props.langChange ?? (() => {})
+      onLangChange: props.langChange ?? (() => { })
     }
   }
 })
@@ -68,7 +67,7 @@ export default defineComponent({
   font-size: 18px;
 }
 
-.ui-logo > img {
+.ui-logo>img {
   margin-right: 12px;
   height: 32px;
   width: 32px;

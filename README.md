@@ -1,4 +1,4 @@
-# Image-Privacy-Watermark-Generator
+# Privacy-Image-Watermark-Generator
 
 Secure your private images with a full page watermark.
 

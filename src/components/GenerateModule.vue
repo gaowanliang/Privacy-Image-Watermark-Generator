@@ -84,7 +84,8 @@
             target="_blank">GitHub</a>{{ contentText.saftyClaim2 }}
     </n-card>
     <h5 style="text-align: center">
-        <a href="https://github.com/gaowanliang" target="_blank">Gaowan Liang</a> © 2023 - {{ new Date().getFullYear() }} , All Rights Reserved
+        <a href="https://github.com/gaowanliang" target="_blank">Gaowan Liang</a> © 2023 - {{ new Date().getFullYear() }} ,
+        All Rights Reserved
     </h5>
 </template>
 
@@ -147,7 +148,7 @@ export default defineComponent({
     methods: {},
     setup: (props) => {
         const langs = toRef(props, 'lang')
-        const contentText = computed(() => content[langs.value])
+        const contentText = computed(() => content[langs.value ?? 'en-US'])
         const formRef = ref<FormInst | null>(null)
         const formValue = ref({
             text: [''],
@@ -169,29 +170,29 @@ export default defineComponent({
             var cw, ch
             cw = formValue.value.width
             ch = formValue.value.height
-            tempCtx.rotate((Math.PI / 180) * formValue.value.rotate)
-            tempCtx.font = formValue.value.fontSizeAndType
-            var gradient = tempCtx.createLinearGradient(0, 0, cw, 0)
+            tempCtx!.rotate((Math.PI / 180) * formValue.value.rotate)
+            tempCtx!.font = formValue.value.fontSizeAndType
+            var gradient = tempCtx!.createLinearGradient(0, 0, cw, 0)
             if (formValue.value.multiColors === true) {
                 gradient.addColorStop(0, formValue.value.colorValue)
                 gradient.addColorStop(0.5, formValue.value.colorValue2)
                 gradient.addColorStop(1.0, formValue.value.colorValue3)
-                tempCtx.fillStyle = gradient
+                tempCtx!.fillStyle = gradient
             } else {
-                tempCtx.fillStyle = formValue.value.colorValue
+                tempCtx!.fillStyle = formValue.value.colorValue
             }
 
-            tempCtx.textAlign = 'center'
-            tempCtx.textBaseline = 'middle'
+            tempCtx!.textAlign = 'center'
+            tempCtx!.textBaseline = 'middle'
 
             console.log(formRef.value)
             var spacing = formValue.value.spacing.split(',')
-            tempCtx.fillText(formValue.value.text[0], cw / 10, ch / parseFloat(spacing[0]))
+            tempCtx!.fillText(formValue.value.text[0], cw / 10, ch / parseFloat(spacing[0]))
             if (formValue.value.text[1]) {
-                tempCtx.fillText(formValue.value.text[1], cw / 10, ch / parseFloat(spacing[1]))
+                tempCtx!.fillText(formValue.value.text[1], cw / 10, ch / parseFloat(spacing[1]))
             }
             if (formValue.value.text[2]) {
-                tempCtx.fillText(formValue.value.text[2], cw / 10, ch / parseFloat(spacing[2]))
+                tempCtx!.fillText(formValue.value.text[2], cw / 10, ch / parseFloat(spacing[2]))
             }
             imageSrc.value = tempCanvas.toDataURL('image/png')
         }
@@ -203,15 +204,15 @@ export default defineComponent({
         function watermarkingImg() {
             console.log(fileListRef)
             if (typeof fileListRef === 'undefined') {
-                message.error(content[langs.value].plsUploadImgFirst)
+                message.error(content[langs.value ?? 'en-US'].plsUploadImgFirst)
                 return
             }
             if (formValue.value.text[0] === '') {
-                message.error(content[langs.value].plsInputWatermarkTextFirst)
+                message.error(content[langs.value ?? 'en-US'].plsInputWatermarkTextFirst)
                 return
             }
             if (imageSrc.value === '') {
-                message.error(content[langs.value].plsGenerateWatermarkFirst)
+                message.error(content[langs.value ?? 'en-US'].plsGenerateWatermarkFirst)
                 return
             }
 
@@ -229,11 +230,11 @@ export default defineComponent({
                 img.onload = function () {
                     canvas.width = img.width;
                     canvas.height = img.height;
-                    ctx.drawImage(img, 0, 0);
+                    ctx!.drawImage(img, 0, 0);
                     var watermark = new Image();
                     watermark.src = imageSrc.value;
-                    ctx.fillStyle = ctx.createPattern(watermark, 'repeat');
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx!.fillStyle = ctx!.createPattern(watermark, 'repeat') as CanvasPattern;
+                    ctx!.fillRect(0, 0, canvas.width, canvas.height);
                     // console.log(canvas.toDataURL('image/png'))
 
                     doneImageSrc.value = canvas.toDataURL('image/png')
@@ -260,7 +261,7 @@ export default defineComponent({
                 fileList: UploadFileInfo[]
             }) {
                 if (data.file.file?.type !== 'image/png' && data.file.file?.type !== 'image/jpeg') {
-                    message.error(content[langs.value].onlyCanUploadImage)
+                    message.error(content[langs.value ?? 'en-US'].onlyCanUploadImage)
                     return false
                 }
                 fileListRef = data.file

@@ -1,5 +1,5 @@
 {
-  "name": "image-privacy-watermark-generator",
+  "name": "privacy-image-watermark-generator",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -21,7 +21,7 @@
     "@rushstack/eslint-patch": "^1.2.0",
     "@tsconfig/node18": "^2.0.1",
     "@types/jsdom": "^21.1.1",
-    "@types/node": "^18.16.17",
+    "@types/node": "^18.16.19",
     "@vicons/ionicons5": "^0.12.0",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
