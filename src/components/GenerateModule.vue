@@ -117,6 +117,19 @@ import {
     type FormInst
 } from 'naive-ui'
 
+// # 000000FF to rgba(0,0,0,1)
+function hexToRgbA(hex: string) {
+    // remove # if it exists
+    hex = hex.replace('#', '');
+    var r = parseInt(hex.substring(0, 2), 16);
+    var g = parseInt(hex.substring(2, 4), 16);
+    var b = parseInt(hex.substring(4, 6), 16);
+    var a = parseInt(hex.substring(6, 8), 16) / 255;
+    // a 保留两位小数
+    a = Math.round(a * 100) / 100
+    return "rgba(" + r + ", " + g + ", " + b + ", " + a + ")";
+}
+
 
 export default defineComponent({
     name: 'IssuePage',
@@ -172,11 +185,13 @@ export default defineComponent({
             ch = formValue.value.height
             tempCtx!.rotate((Math.PI / 180) * formValue.value.rotate)
             tempCtx!.font = formValue.value.fontSizeAndType
-            var gradient = tempCtx!.createLinearGradient(0, 0, cw, 0)
+
             if (formValue.value.multiColors === true) {
-                gradient.addColorStop(0, formValue.value.colorValue)
-                gradient.addColorStop(0.5, formValue.value.colorValue2)
-                gradient.addColorStop(1.0, formValue.value.colorValue3)
+                var gradient = tempCtx!.createLinearGradient(0, 0, cw, 0)
+                gradient.addColorStop(0, hexToRgbA(formValue.value.colorValue))
+                console.log(formValue.value.colorValue, hexToRgbA(formValue.value.colorValue))
+                gradient.addColorStop(0.5, hexToRgbA(formValue.value.colorValue2))
+                gradient.addColorStop(1.0, hexToRgbA(formValue.value.colorValue3))
                 tempCtx!.fillStyle = gradient
             } else {
                 tempCtx!.fillStyle = formValue.value.colorValue
