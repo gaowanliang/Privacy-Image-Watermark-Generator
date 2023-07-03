@@ -186,7 +186,7 @@ export default defineComponent({
             colorValue2: '#c0392b66',
             colorValue3: '#16a08566',
             advanced: false,
-            fontSizeAndType: "20px Microsoft Yahei",
+            fontSizeAndType: '20px Arial',
             rotate: -40,
             spacing: "3.6,2.8,2.3"
         })
