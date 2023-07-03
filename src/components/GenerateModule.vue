@@ -188,7 +188,7 @@ export default defineComponent({
             advanced: false,
             fontSizeAndType: "20px Microsoft Yahei",
             rotate: -40,
-            spacing: "2.9,2.4,2.0"
+            spacing: "3.6,2.8,2.3"
         })
         const imageSrc = ref('')
         const changeWatermark = () => {
