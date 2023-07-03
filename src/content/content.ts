@@ -30,6 +30,7 @@ const lang = {
         saftyClaim1: '是的，本网页对您的图片不会进行任何上传，所有操作均在您的浏览器中完成。代码已开源，您可以在',
         saftyClaim2: "上查看。如果您对本网页的安全性有质疑，您可以在本网页加载完之后关闭网络，然后使用本网页。",
         saveHint: ' 如果您在电脑上使用，可以右键图片另存为保存，如果您在手机上使用，可以长按图片保存。',
+        downloadImage: '下载图片',
 
 
     },
@@ -64,6 +65,7 @@ const lang = {
         saftyClaim1: 'Yes, this webpage will not upload your pictures, all operations are completed in your browser. The code is open source, you can view it on ',
         saftyClaim2: ". If you have any questions about the security of this webpage, you can close the network after the webpage is loaded, and then use this webpage.",
         saveHint: ' If you use it on a computer, you can right-click the picture and save it as. If you use it on a mobile phone, you can press and hold the picture to save it.',
+        downloadImage: 'Download image',
     }
 }
 

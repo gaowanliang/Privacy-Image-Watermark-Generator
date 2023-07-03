@@ -7,10 +7,10 @@
                     :max="3" />
             </n-form-item>
             <n-space>
-                <n-form-item :label="contentText.watermarkHeight" path="inputNumberValue">
+                <n-form-item :label="contentText.watermarkWidth" path="inputNumberValue">
                     <n-input-number v-model:value="formValue.width" />
                 </n-form-item>
-                <n-form-item :label="contentText.watermarkWidth" path="inputNumberValue">
+                <n-form-item :label="contentText.watermarkHeight" path="inputNumberValue">
                     <n-input-number v-model:value="formValue.height" />
                 </n-form-item>
             </n-space>
@@ -49,7 +49,9 @@
         </div>
 
         <n-card :title="contentText.watermarkPreview" size="small">
+
             <n-image id="watermarkPreview" :src="imageSrc"></n-image>
+
         </n-card>
     </n-card>
     <n-card class="card" :title="contentText.uploadImage">
@@ -78,6 +80,17 @@
         <h5>
             {{ contentText.saveHint }}
         </h5>
+        <div style="display: flex; padding-top: 15px ; justify-content: flex-end" v-if="doneImageSrc !== ''">
+            <n-button type="primary" @click="downloadImage" style="margin-bottom: 15px">
+                <template #icon>
+                    <n-icon>
+                        <cloud-download />
+                    </n-icon>
+                </template>
+
+                {{ contentText.downloadImage
+                }}</n-button>
+        </div>
     </n-card>
     <n-card class="card" :title="contentText.isSafty">
         {{ contentText.saftyClaim1 }}<a href="https://github.com/gaowanliang/Privacy-Image-Watermark-Generator"
@@ -93,7 +106,7 @@
 import { defineComponent, computed, toRef, ref } from 'vue'
 import type { PropType } from 'vue'
 import content from '../content/content'
-import { ArchiveOutline as ArchiveIcon } from '@vicons/ionicons5'
+import { ArchiveOutline as ArchiveIcon, CloudDownload } from '@vicons/ionicons5'
 
 import {
     NCard,
@@ -157,6 +170,7 @@ export default defineComponent({
         NLayout,
         NText,
         ArchiveIcon,
+        CloudDownload,
     },
     methods: {},
     setup: (props) => {
@@ -165,16 +179,16 @@ export default defineComponent({
         const formRef = ref<FormInst | null>(null)
         const formValue = ref({
             text: [''],
-            height: 200,
-            width: 900,
+            height: 300,
+            width: 40,
             multiColors: false,
-            colorValue: '#00000030',
-            colorValue2: '#c0392b30',
-            colorValue3: '#16a08530',
+            colorValue: '#00000066',
+            colorValue2: '#c0392b66',
+            colorValue3: '#16a08566',
             advanced: false,
-            fontSizeAndType: "16px Microsoft Yahei",
-            rotate: -16,
-            spacing: "2.3,1.9,1.6"
+            fontSizeAndType: "20px Microsoft Yahei",
+            rotate: -40,
+            spacing: "2.9,2.4,2.0"
         })
         const imageSrc = ref('')
         const changeWatermark = () => {
@@ -191,10 +205,10 @@ export default defineComponent({
                 gradient.addColorStop(0, hexToRgbA(formValue.value.colorValue))
                 console.log(formValue.value.colorValue, hexToRgbA(formValue.value.colorValue))
                 gradient.addColorStop(0.5, hexToRgbA(formValue.value.colorValue2))
-                gradient.addColorStop(1.0, hexToRgbA(formValue.value.colorValue3))
+                gradient.addColorStop(1, hexToRgbA(formValue.value.colorValue3))
                 tempCtx!.fillStyle = gradient
             } else {
-                tempCtx!.fillStyle = formValue.value.colorValue
+                tempCtx!.fillStyle = hexToRgbA(formValue.value.colorValue)
             }
 
             tempCtx!.textAlign = 'center'
@@ -254,11 +268,13 @@ export default defineComponent({
 
                     doneImageSrc.value = canvas.toDataURL('image/png')
                 }
-
-
-
-
             }
+        }
+        function downloadImage() {
+            var a = document.createElement('a');
+            a.href = doneImageSrc.value;
+            a.download = 'watermark.png';
+            a.click();
         }
 
         return {
@@ -269,6 +285,7 @@ export default defineComponent({
             changeWatermark,
             watermarkingImg,
             doneImageSrc,
+            downloadImage,
 
 
             async beforeUpload(data: {
