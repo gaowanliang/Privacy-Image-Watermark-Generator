@@ -238,7 +238,7 @@ export default defineComponent({
 
         function watermarkingImg() {
             // console.log(fileListRef)
-            doneImageSrc.value = 'loading'
+            
             if (typeof fileListRef === 'undefined') {
                 message.error(content[langs.value ?? 'en-US'].plsUploadImgFirst)
                 return
@@ -251,7 +251,7 @@ export default defineComponent({
                 message.error(content[langs.value ?? 'en-US'].plsGenerateWatermarkFirst)
                 return
             }
-
+            doneImageSrc.value = 'loading'
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
 
