@@ -2,7 +2,7 @@
 
 Secure your private images with a full page watermark.
 
-Protect your private images from unauthorized use or removal with our privacy image watermark generator, a free and easy-to-use tool that allows you to add custom watermarks to your photos in seconds. You can select the text, color, size, and position of your watermark, and even apply gradient colors to make it more resistant to removal. All the processing is done in your browser, so your images are never uploaded or stored anywhere else. You can also view our open source code on GitHub and use our tool offline if you prefer. Secure your images with our privacy image watermark generator today!
+Privacy Image Watermark Generator is a web-based tool that allows you to add watermarks to your images without uploading them to any server. You can customize the watermark text, size, color and position, and choose whether to enable gradient color to prevent watermark removal. This tool is especially useful for protecting your privacy information such as passports, driver’s licenses, ID cards, etc. when uploading them online. You can also use this tool offline by closing the network after the web page is loaded. The code is open source and available on GitHub. Try it now and enjoy the convenience and security of Privacy Image Watermark Generator!
 
 https://watermark.gwliang.com/
 
