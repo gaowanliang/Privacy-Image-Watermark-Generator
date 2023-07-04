@@ -58,7 +58,7 @@ a {
   margin-bottom: 32px;
 }
 
-img {
-  width: 100%;
+img[loading="eager"] {
+    width: 100%;
 }
 </style>

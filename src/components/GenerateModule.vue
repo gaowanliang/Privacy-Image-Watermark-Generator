@@ -74,8 +74,12 @@
         </div>
     </n-card>
     <n-card class="card" :title="contentText.doneImage">
-        <n-layout>
-            <n-image :src="doneImageSrc"></n-image>
+        <n-spin v-if="doneImageSrc === 'loading'"
+            style="display: flex; justify-content: center; align-items: center; height: 100%" size="large" />
+
+        <n-layout v-if="doneImageSrc !== ''">
+
+            <n-image v-if="doneImageSrc !== 'loading'" :src="doneImageSrc"></n-image>
         </n-layout>
         <h5>
             {{ contentText.saveHint }}
@@ -125,6 +129,7 @@ import {
     NIcon,
     NText,
     NLayout,
+    NSpin,
     useMessage,
     type UploadFileInfo,
     type FormInst
@@ -169,6 +174,7 @@ export default defineComponent({
         NButton,
         NLayout,
         NText,
+        NSpin,
         ArchiveIcon,
         CloudDownload,
     },
@@ -231,7 +237,8 @@ export default defineComponent({
         const doneImageSrc = ref('')
 
         function watermarkingImg() {
-            console.log(fileListRef)
+            // console.log(fileListRef)
+            doneImageSrc.value = 'loading'
             if (typeof fileListRef === 'undefined') {
                 message.error(content[langs.value ?? 'en-US'].plsUploadImgFirst)
                 return
@@ -333,9 +340,5 @@ export default defineComponent({
     width: 100%;
     display: flex;
     justify-content: center;
-}
-
-.n-iamge img {
-    width: 100%;
 }
 </style>
