@@ -1,7 +1,22 @@
-# Privacy-Image-Watermark-Generator
+# Privacy Image Watermark Generator
 
 Secure your private images with a full page watermark.
 
+Protect your private images from unauthorized use or removal with our privacy image watermark generator, a free and easy-to-use tool that allows you to add custom watermarks to your photos in seconds. You can select the text, color, size, and position of your watermark, and even apply gradient colors to make it more resistant to removal. All the processing is done in your browser, so your images are never uploaded or stored anywhere else. You can also view our open source code on GitHub and use our tool offline if you prefer. Secure your images with our privacy image watermark generator today!
+
+https://watermark.gwliang.com/
+
+## Features
+* Customizable watermarks: You can choose the text, color, size, and position of your watermark, and even apply gradient colors to make it more resistant to removal.
+* Browser-based processing: All the processing is done in your browser, so your images are never uploaded or stored anywhere else. This ensures your privacy and security.
+* Open source code: You can view our open source code on GitHub and use our tool offline if you prefer. You can also contribute to our project or report any issues or suggestions.
+* Free and easy-to-use: Our tool is free and easy-to-use, and does not require any registration or installation. You can add watermarks to your images in seconds with just a few clicks.
+
+## Generated Watermark Examples
+![](/img/watermark.png)
+
+
+# Deployed your own version
 
 ## Recommended IDE Setup
 

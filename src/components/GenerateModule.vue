@@ -31,11 +31,17 @@
             <n-space style="padding-bottom: 15px ;">{{ contentText.advancedSettings }}<n-switch
                     v-model:value="formValue.advanced" /></n-space>
             <div v-if="formValue.advanced === true">
-                <n-form-item :label="contentText.rotato" path="inputNumberValue">
-                    <n-input-number v-model:value="formValue.rotate" />
-                </n-form-item>
-                <n-form-item :label="contentText.spacing" path="spacing">
-                    <n-input v-model:value="formValue.spacing" />
+                <n-space>
+                    <n-form-item :label="contentText.rotato" path="inputNumberValue">
+                        <n-input-number v-model:value="formValue.rotate" />
+                    </n-form-item>
+                    <n-form-item :label="contentText.lateralDistance" path="inputNumberValue">
+                        <n-input-number v-model:value="formValue.lateralDistance" />
+                    </n-form-item>
+                </n-space>
+
+                <n-form-item :label="contentText.verticalDistance" path="verticalDistance">
+                    <n-input v-model:value="formValue.verticalDistance" />
                 </n-form-item>
                 <n-form-item :label="contentText.fontSizeAndFamily" path="fontSizeAndType">
                     <n-input v-model:value="formValue.fontSizeAndType" />
@@ -185,7 +191,7 @@ export default defineComponent({
         const formRef = ref<FormInst | null>(null)
         const formValue = ref({
             text: [''],
-            height: 300,
+            height: 100,
             width: 40,
             multiColors: false,
             colorValue: '#00000066',
@@ -193,8 +199,9 @@ export default defineComponent({
             colorValue3: '#16a08566',
             advanced: false,
             fontSizeAndType: '20px Arial',
-            rotate: -40,
-            spacing: "3.6,2.8,2.3"
+            rotate: -26,
+            lateralDistance: 0.56,
+            verticalDistance: "1.0,0.85,0.72"
         })
         const imageSrc = ref('')
         const changeWatermark = () => {
@@ -221,13 +228,14 @@ export default defineComponent({
             tempCtx!.textBaseline = 'middle'
 
             console.log(formRef.value)
-            var spacing = formValue.value.spacing.split(',')
-            tempCtx!.fillText(formValue.value.text[0], cw / 10, ch / parseFloat(spacing[0]))
+            var verticalDistance = formValue.value.verticalDistance.split(',')
+            var lateralDistance = formValue.value.lateralDistance
+            tempCtx!.fillText(formValue.value.text[0], cw / lateralDistance, ch / parseFloat(verticalDistance[0]))
             if (formValue.value.text[1]) {
-                tempCtx!.fillText(formValue.value.text[1], cw / 10, ch / parseFloat(spacing[1]))
+                tempCtx!.fillText(formValue.value.text[1], cw / lateralDistance, ch / parseFloat(verticalDistance[1]))
             }
             if (formValue.value.text[2]) {
-                tempCtx!.fillText(formValue.value.text[2], cw / 10, ch / parseFloat(spacing[2]))
+                tempCtx!.fillText(formValue.value.text[2], cw / lateralDistance, ch / parseFloat(verticalDistance[2]))
             }
             imageSrc.value = tempCanvas.toDataURL('image/png')
         }
@@ -238,7 +246,7 @@ export default defineComponent({
 
         function watermarkingImg() {
             // console.log(fileListRef)
-            
+
             if (typeof fileListRef === 'undefined') {
                 message.error(content[langs.value ?? 'en-US'].plsUploadImgFirst)
                 return
